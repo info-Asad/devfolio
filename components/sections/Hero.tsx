@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { ThemeToggle } from '../ui/ThemeToggle';
 import AnimatedText from '../ui/AnimatedText';
 import { profile } from '@/config/profile';
 import FullScreenMenu from '@/components/ui/FullScreenMenu';
-import Spline from '@splinetool/react-spline';
+import AnimatedBackgroundFallback from '@/components/ui/AnimatedBackgroundFallback';
 import Link from 'next/link';
 
 export default function Hero() {
@@ -41,16 +41,9 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen flex flex-col justify-center items-center px-4">
-      {/* Spline 3D Model */}
+      {/* Animated Background */}
       <div className="absolute inset-0 z-0">
-        <Spline
-          scene={
-            isDark
-              ? 'https://prod.spline.design/TRfTj83xgjIdHPmT/scene.spline'
-              : 'https://prod.spline.design/fJ2ptJKzT-sDkpfO/scene.splinecode'
-          }
-          className="w-full h-full"
-        />
+        <AnimatedBackgroundFallback isDark={isDark} />
       </div>
 
   

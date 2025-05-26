@@ -1,8 +1,13 @@
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
-// next.config.js
 const nextConfig = {
-  eslint: { ignoreDuringBuilds: true },
-  images: { unoptimized: true }, // optional, based on usage
+  output: 'export',
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  images: { unoptimized: true },
+
 };
 
 module.exports = nextConfig;

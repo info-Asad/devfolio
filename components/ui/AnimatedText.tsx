@@ -72,5 +72,6 @@ export default function AnimatedText({
     }
   };
 
-  return <div className={cn('', className)}>{getTextContent()}</div>;
+  // Use a span instead of div to avoid nesting issues when parent is a p tag
+  return <span className={cn('', className)}>{getTextContent()}</span>;
 }

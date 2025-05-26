@@ -65,27 +65,31 @@ export default function CustomCursor() {
 
   return (
     <AnimatePresence>
-      <motion.div
-        className="hidden md:block fixed top-0 left-0 rounded-full pointer-events-none z-[9999]"
-        style={{
-          width: isHovered ? '16px' : '32px',
-          height: isHovered ? '16px' : '32px',
-          backgroundColor: 'transparent',
-          border: `2px solid ${cursorColor}`,
-        }}
-        animate={{
-          x: mousePosition.x - (isHovered ? 8 : 16),
-          y: mousePosition.y - (isHovered ? 8 : 16),
-          opacity: cursorHidden ? 0 : 1,
-          scale: 1,
-        }}
-        transition={{
-          type: 'spring',
-          stiffness: 150,
-          damping: 15,
-          mass: 0.1,
-        }}
-      />
+      {!cursorHidden && (
+        <motion.div
+          className="hidden md:block fixed top-0 left-0 rounded-full pointer-events-none z-[9999]"
+          style={{
+            width: isHovered ? '16px' : '32px',
+            height: isHovered ? '16px' : '32px',
+            backgroundColor: 'transparent',
+            border: `2px solid ${cursorColor}`,
+          }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{
+            x: mousePosition.x - (isHovered ? 8 : 16),
+            y: mousePosition.y - (isHovered ? 8 : 16),
+            opacity: 1,
+            scale: 1,
+          }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{
+            type: 'spring',
+            stiffness: 150,
+            damping: 15,
+            mass: 0.1,
+          }}
+        />
+      )}
     </AnimatePresence>
   );
 }
