@@ -26,7 +26,7 @@ export default function RootLayout({
       <body className={cn(inter.className, "antialiased min-h-screen")}>
         <ThemeProvider 
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
           storageKey="theme-preference"
