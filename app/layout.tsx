@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { cn } from '@/lib/utils'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
+import AnalyticsProvider from '@/components/providers/AnalyticsProvider'
 import { profile } from '@/config/profile';
 
 
@@ -31,6 +32,7 @@ export default function RootLayout({
           disableTransitionOnChange
           storageKey="theme-preference"
         >
+          <AnalyticsProvider />
           {children}
         </ThemeProvider>
       </body>
