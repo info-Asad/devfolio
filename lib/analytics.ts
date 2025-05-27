@@ -6,23 +6,39 @@ interface EventProps {
   value?: number;
 }
 
+// Check if analytics is available and not blocked
+const isAnalyticsAvailable = () => {
+  return typeof window !== 'undefined' && 
+         typeof window.gtag === 'function';
+};
+
 // Track custom events with GA4
 export const trackEvent = ({ action, category, label, value }: EventProps) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', action, {
-      event_category: category,
-      event_label: label,
-      value: value,
-    });
+  if (isAnalyticsAvailable()) {
+    try {
+      window.gtag('event', action, {
+        event_category: category,
+        event_label: label,
+        value: value,
+      });
+    } catch (error) {
+      // Silently handle errors from ad blockers
+      console.debug('Analytics event tracking blocked or failed');
+    }
   }
 };
 
 // Track page views with GA4
 export const trackPageView = (url: string) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('config', 'G-V5R0D0BS28', {
-      page_path: url,
-    });
+  if (isAnalyticsAvailable()) {
+    try {
+      window.gtag('config', 'G-V5R0D0BS28', {
+        page_path: url,
+      });
+    } catch (error) {
+      // Silently handle errors from ad blockers
+      console.debug('Analytics page view tracking blocked or failed');
+    }
   }
 };
 
